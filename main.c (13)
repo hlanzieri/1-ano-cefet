@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, codigo[10], qtd[10], resp, resp1, resp2, maior=0, imaior=0;
+    float precoc[10], precov[10], lucro[10];
+    char nome[20][10];
+    printf("CADASTRO\n\n");
+    for(i=0; i<10; i++)
+    {
+    printf("Insira o código do novo produto:\n");
+    scanf("%i", &codigo[i]);
+    printf("\nInsira o nome do novo produto:\n");
+    scanf("%s", &nome[i]);
+    printf("\nInsira o preço de compra do novo produto:\n");
+    scanf("%f", &precoc[i]);
+    printf("\nInsira o preço de venda do novo produto:\n");
+    scanf("%f", &precov[i]);
+    printf("\nInsira a quantidade no estoque do novo produto:\n");
+    scanf("%i", &qtd[i]);
+    lucro[i]=precov[i]-precoc[i];
+    }
+    while(resp=!5)
+    {
+        printf("\n\nMENU\n1. Mostrar o preço de venda de um determinado produto;\n2. Efetuar uma venda;\n3. Mostrar todos os dados de todos os produtos;\n4. Mostrar o produto que dá mais lucro;\n5. Sair.\n");
+        scanf("%i", &resp);
+        switch(resp)
+        {
+            case 1:
+            printf("\nO preço de venda de qual produto você gostaria de ver (insira o código)?\n");
+            scanf("%i", &resp1);
+            for(i=0; i<10; i++)
+            {
+               if(resp1==codigo[i])
+               {
+                   printf("\nO preço de venda do produto %s é de R$%.2f", nome[i], precov[i]);
+               }
+            }
+            break;
+            case 2:
+            printf("\nInsira o código do produto que será comprado:");
+            scanf("%i", &resp2);
+            for(i=0; i<10; i++)
+            {
+                if(resp2==codigo[i])
+                {
+                    printf("\nA sua compra do produto %s foi efetuada no valor de R$%.2f");
+                    printf("\nObrigado pela sua compra!");
+                    qtd[i]=qtd[i]-1;
+                }
+            }
+            break;
+            case 3:
+            for(i=0; i<10; i++)
+            {
+                printf("\nO produto %s de código %i, tem como preço de compra R$%.2f, preço de venda R$%.2f e quantidade em estoque %i", nome[i], codigo[i], precoc[i], precov[i], qtd[i]);
+            }
+            break;
+            case 4:
+            for(i=0; i<10; i++)
+            {
+                if(lucro[i]>maior)
+                {
+                    lucro[i]=maior;
+                    i=imaior;
+                }
+            }
+            printf("O produto que terá maior lucro é o/a %s", nome[imaior]);
+            break;
+        }
+
+    }
+    return 0;
+}

@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float nota[5], nota2[5], media[5], maior=0, menor=0 ;
+    int i, alunosr=0;
+    for(i=0; i<5; i++)
+    {
+        printf("Insira sua primeira nota:\n");
+        scanf("%f", &nota[i]);
+        printf("Insira sua segunda nota:\n");
+        scanf("%f", &nota2[i]);
+            media[i]=(nota[i]+nota2[i])/2;
+            if(media[i]>maior)
+            {
+                maior=media[i];
+            }
+            if(i==0)
+            {
+                menor=media[i];
+            }
+            if(media[i]<menor)
+            {
+                menor=media[i];
+            }
+
+    }
+    for(i=0; i<5; i++)
+    {
+        if(media[i]<6)
+        {
+            alunosr++;
+        }
+    printf("\n\n%.2f", media[i]);
+    }
+    printf("\n\nA maior média foi %.2f", maior);
+    printf("\n\nA menor média foi %.2f", menor);
+    printf("\nO número de alunos reprovados foi de %i", alunosr);
+    return 0;
+}

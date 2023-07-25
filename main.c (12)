@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, idade[10];
+    float salario[10];
+    char nome[10][30];
+        for(i=0; i<10; i++)
+    {
+            printf("Insira seu nome:\n");
+            __fpurge(stdin);
+            gets(nome[i]);
+            printf("\nInsira seu salário:\n");
+            scanf("%f", &salario[i]);
+            printf("\nInsira sua idade:\n");
+            scanf("%i", &idade[i]);
+    }
+        for(i=0; i<10; i++)
+    {
+            printf("\n%s tem %i anos de idade e recebe R$%.2f", nome[i], idade[i], salario[i]);
+    }
+    return 0;
+}

@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main()
+{
+    float n, maior, segundomaior, menorn;
+    int i;
+    printf("Insira um valor:\n");
+    scanf("%f", &maior);
+    segundomaior = menorn = maior;
+    for(i=2;i<=200; i++)
+    {
+        printf("Insira um valor:\n");
+        scanf("%f", &n);
+        if(n>maior)
+        {
+            segundomaior=maior;
+            maior=n;
+        }
+        else
+        {
+            if(n<menorn)
+            {
+                menorn=n;
+            }
+            else
+            {
+                if(n > segundomaior && n < maior)
+                {
+                    segundomaior=n;
+                }
+            }
+        }
+    }
+    printf("o segundo maior número é %.2f e o menor número é %.2f", segundomaior, menorn);
+
+    return 0;
+}

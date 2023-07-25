@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main()
+{
+    int idade, salario;
+    char nome[30];
+    for(int i=0;i<10; i++)
+    {
+    printf("\n\n\nInsira seu nome:\n");
+    scanf("%s", &nome);
+    printf("\nInsira sua idade (em anos):\n");
+    scanf("%i", &idade);
+    printf("\nInsira seu salário (em reais):\n");
+    scanf("%i", &salario);
+            if(idade<=20 && salario>5000 && salario<8000)
+            {
+                salario=salario+1000;
+                printf("Seu salário aumentou e seu novo valor é de R$%i.", salario);
+            }  
+            if(idade>20 && salario>5000)
+            {
+                salario=salario+3000;
+                printf("Seu salário aumentou e seu novo valor é de R$%i.", salario);
+            }
+            if(idade>20 && salario>=5000)
+            {
+                printf("O salário não aumentou e seu valor se mantém em %i", salario);
+            }
+     }
+  return 0;
+}

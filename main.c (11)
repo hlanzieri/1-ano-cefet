@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, vetor[10], n;
+    for(i=0; i<10; i++)
+    {
+        printf("\nInsira sua posição:\n");
+        scanf("%i", &vetor[i]);
+    }
+    for(i=0; i<10; i++)
+    {
+     if(vetor[i]%2==0)
+        {
+            n++;
+        }
+    }
+    printf("São %i posições pares", n);
+
+    return 0;
+}

@@ -1,0 +1,60 @@
+int main()
+{
+    float nota[5], nota2[5], media[5], maior=0;
+    int i, alunosr;
+    for(i=0; i<5; i++)
+    {
+        printf("Insira sua primeira nota:\n");
+        scanf("%f", &nota[i]);
+        printf("Insira sua segunda nota:\n");
+        scanf("%f", &nota2[i]);
+            media[i]=(nota[i]+nota2[i])/2;
+    }
+    for(i=0; i<5; i++)
+    {
+        if(media[1]>media[2] && media[1]>media[3] && media[1]>media[4] && media[1]>media[5])
+        {
+            maior=media[1];
+        }
+         if(media[2]>media[1] && media[2]>media[3] && media[2]>media[4] && media[2]>media[5])
+        {
+            maior=media[2];
+        }
+         if(media[3]>media[1] && media[3]>media[2] && media[3]>media[4] && media[3]>media[5])
+        {
+            maior=media[3];
+        }
+         if(media[4]>media[1] && media[4]>media[2] && media[4]>media[3] && media[4]>media[5])
+        {
+            maior=media[4];
+        }
+         if(media[5]>media[1] && media[5]>media[2] && media[5]>media[3] && media[5]>media[4])
+        {
+            maior=media[5];
+        }
+        if(media[1]<6)
+        {
+            alunosr=alunosr+1;
+        }
+        if(media[2]<6)
+        {
+            alunosr=alunosr+1;
+        }
+        if(media[3]<6)
+        {
+            alunosr=alunosr+1;
+        }
+        if(media[4]<6)
+        {
+            alunosr=alunosr+1;
+        }
+        if(media[5]<6)
+        {
+            alunosr=alunosr+1;
+        }
+    printf("\n\n%.2f", media[i]);
+    }
+    printf("\n\nA maior média foi %.2f", maior);
+    printf("\nO número de alunos reprovados foi de %i", alunosr);
+    return 0;
+}

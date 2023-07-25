@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main()
+{
+   int numero, saldo, resp, deposito, sacar, senha;
+   printf("Bem vindo ao banco Lanzieri!");
+   do
+   {
+   printf("\n\nInforme o número de sua conta:\n");
+   scanf("%i", &numero);
+   printf("Informe a sua senha de login:\n");
+   scanf("%i", &senha);
+   }
+   while(senha!=84531572);
+   printf("\nSenha correta!\n\n\n");
+   printf("Informe seu saldo:\n");
+   scanf("%i", &saldo);
+    do
+    {
+    printf("\n\nA seguir temos uma tabela que faz referência a sua ação\n1. Fazer depósito;\n2. Fazer saque;\n3. Consultar saldo;\n4. Sair.");
+    printf("\nAgora, insira a sua ação:\n");
+    scanf("%i", &resp);
+    switch(resp)
+    {
+    case 1:
+    printf("Insira o valor do seu depósito:");
+    scanf("%i", &deposito);
+    saldo=saldo+deposito;
+    printf("O seu depósito foi realizado com sucesso e seu novo saldo é de R$%i", saldo);
+    break;
+    case 2:
+    printf("Qual valor você deseja sacar?");
+    scanf("%i", &sacar);
+    if(sacar>saldo)
+    {
+        printf("O valor que você deseja sacar é maior que seu saldo, e o seu saldo atual é R$%i", saldo);
+    }
+    else
+    {
+        saldo= saldo-sacar;
+        printf("\n\nSeu saque foi efetuado e seu saldo atual é %i", saldo);
+    }
+    break;
+    case 3:
+    printf("Seu saldo atual é de R$%i", saldo);
+    }
+    }
+    while(resp!=4);
+    printf("\n\nObrigado por ser cliente dos bancos Lanzieri!");
+    return 0;
+}

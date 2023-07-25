@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main()
+{
+    int i, joa, pe, ma, nulo, resp=999;
+    do
+    {
+        printf("\n\nMENU DE CANDIDATOS ELEIÇÃO 2023\n\n Candidatos:\n123- Joana;\n483- Pedro;\n045- Marina;\n000- nulo.\n");
+        printf("Insira o número do seu candidato:\n");
+        scanf("%i", &resp);
+        printf("Obrigado por contribuir com a democracia do país!");
+        switch(resp)
+        {
+            case 123: joa++;
+            printf("\nVoto em Joana computado!");
+            break;
+            case 483: pe++;
+            printf("\nVoto em Pedro computado!");
+            break;
+            case 045: ma++;
+            printf("\nVoto em Marina computado!\n");
+            for(i=1; i<=30; i++)
+            {
+                printf("\nViva a Marina!");
+            }
+            break;
+            case 000: nulo++;
+            printf("\nVoto nulo computado!");
+            break;
+        }
+    }
+    while(resp!=999);
+    if(joa>pe && joa>ma)    
+    {
+        printf("\n\nO ganhador das eleições foi Joana!");
+    }
+    if(pe>joa && pe>ma)
+    {
+        printf("\n\nO ganhador das eleições foi Pedro!");
+    }
+    if(ma>joa && ma>pe)
+    {
+         printf("\n\nO ganhador das eleições foi Marina!");
+    }
+    printf("\nO resultado da eleição foi o seguinte:\nA candidata Joana recebeu %i votos.\nOcandidato Pedro recebeu %i votos.\nA candidata Marina recebeu %i votos.\nForam computados %i votos nulos.", joa, pe, ma, nulo);
+    return 0;
+}

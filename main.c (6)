@@ -1,0 +1,110 @@
+#include <stdio.h>
+
+int main()
+{
+    char nome[30], nome2[30], nome3[30], email[50], email2[50], email3[50];
+    int tel, tel2, tel3, resp, opcao, opc;
+    printf("Bem vindo a sua agenda!\n\n");
+    do
+    {
+        printf("\n\n\nInsira o número da ação que você deseja realizar, de acordo com a tabela a seguir:\n1. Cadastrar;\n2. Alterar dados;\n3. Consultar todos os dados;\n4. Sair.\n");
+        scanf("%i", &resp);
+        switch(resp)
+        {
+            case 1:
+            printf("\nInsira o nome do contato 1:\n");
+            scanf("%s", &nome);
+            printf("\nInsira o número de telefone do seu contato 1:\n");
+            scanf("%i", &tel);
+            printf("\nInsira o email de seu contato 1:\n");
+            scanf("%s", &email);
+            printf("\nInsira o nome do contato 2:\n");
+            scanf("%s", &nome2);
+            printf("\nInsira o número de telefone do seu contato 2:\n");
+            scanf("%i", &tel2);
+            printf("\nInsira o email de seu contato 2:\n");
+            scanf("%s", &email2);
+             printf("\nInsira o nome do contato 3:\n");
+            scanf("%s", &nome3);
+            printf("\nInsira o número de telefone do seu contato 3:\n");
+            scanf("%i", &tel3);
+            printf("\nInsira o email de seu contato 3:\n");
+            scanf("%s", &email3);
+            break;
+            case 2:
+            printf("\n\nInsira qual dado você deseja alterar de acordo com a tabela a seguir:\n1. Alterar nome do contato;\n2. Alterar telefone do contato;\n3. Alterar email do contato.\n");
+            scanf("%i", &opcao);
+            printf("\nInsira qual contato você irá alterar de acordo com a tabela seguir:\n1. %s;\n2. %s;\n3. %s.\n", nome, nome2, nome3);
+                scanf("%i", &opc);
+            switch(opc)
+            {
+                case 1:
+                switch(opcao)
+                {
+                case 1:
+                printf("\nInsira o novo nome do contato:\n");
+                scanf("%s", &nome);
+                printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome, tel, email);
+                break;
+                case 2:
+                printf("\nInsira o novo telefone de contato:\n");
+                scanf("%i", &tel);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome, tel, email);
+                 break;
+                 case 3:
+                 printf("Insira o novo email do contato:");
+                 scanf("%s", &email);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome, tel, email);
+                 break;
+                }
+                break;
+                case 2:
+                switch(opcao)
+                {
+                case 1:
+                printf("\nInsira o novo nome do contato:\n");
+                scanf("%s", &nome2);
+                printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome2, tel2, email2);
+                break;
+                case 2:
+                printf("\nInsira o novo telefone de contato:\n");
+                scanf("%i", &tel2);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome2, tel2, email2);
+                 break;
+                 case 3:
+                 printf("Insira o novo email do contato:");
+                 scanf("%s", &email2);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome2, tel2, email2);
+                 break;
+                }
+                break;
+                case 3:
+                switch(opcao)
+                {
+                case 1:
+                printf("\nInsira o novo nome do contato:\n");
+                scanf("%s", &nome3);
+                printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome3, tel3, email3);
+                break;
+                case 2:
+                printf("\nInsira o novo telefone de contato:\n");
+                scanf("%i", &tel3);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome3, tel3, email3);
+                 break;
+                 case 3:
+                 printf("Insira o novo email do contato:");
+                 scanf("%s", &email3);
+                 printf("\nO contato de nome %s tem como número de telefone %i e como email %s\n", nome3, tel3, email3);
+                 break;
+                }
+                break;
+               
+            }
+            case 3:
+            printf("\nO primeiro contato, de nome %s tem como número de telefone %i e como email %s, o segundo contato, de nome %s tem como número de telefone %i e como email %s e o terceiro contato, de nome %s tem como número de telefone %i e como email %s\n", nome, tel, email, nome2, tel2, email2, nome3, tel3, email3);
+            break;
+        }
+    }
+    while(resp!=4);
+    return 0;
+}

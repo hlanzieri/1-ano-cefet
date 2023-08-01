@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 float nota[5], nota2[5], media[5], maiormedia=0;
 int i, imaior;
-char nome[30][5];
+char nome[5][30];
 
 void main()
 {

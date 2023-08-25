@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i, j, x[3][3], soma=0, multiplicacao=0, soma2=0, equacao[3];
+    for(i=0; i<3; i++)
+    {
+        for(j=0; j<3; j++)
+    {
+        printf("\nInsira o valor da linha %d e coluna %d:\n", i, j);
+        scanf("%d", &x[i][j]);
+        soma=soma+x[i][j];
+        if(i==0 && j==0)
+        {
+            multiplicacao=x[i][j];
+        }
+        else
+        {
+            multiplicacao=multiplicacao*x[i][j];
+        }
+    }
+    }
+    for(i=0; i<3; i++)
+    {
+        equacao[i]=x[i][0]*x[i][1]/x[i][2];
+        soma2=soma2+equacao[i];
+    }
+    printf("\nA soma é igual a: %d\n", soma);
+    printf("\nA multiplicação é igual a: %d\n", multiplicacao);
+    printf("\nA equação é igual a: %i\n", soma2);
+    return 0;
+}

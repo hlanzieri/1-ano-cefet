@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float peso[15], altura[15], soma=0, media=0;
+    char nome[15][20], resp2[20], resp3[20];
+    int i, k=0, resp=0, resp4=0;
+    while(resp!=6){
+        printf("\n******************MENU***************************\n1. Cadastrar um novo atleta;\n2. Consultar todos os dados de todos os atletas;\n3. Mostrar altura de um dos atletas;\n4. Alterar dados de um determinado atleta;\n5. Mostar o peso médio desses atletas;\n6. Sair.\n");
+        scanf("%i", &resp);
+        switch(resp){
+    case 1:
+        if(k<13){
+        printf("\n\nInsira seu nome:\n");
+            __fpurge(stdin);
+            gets(nome[k]);
+            printf("\nInsira seu peso:\n");
+            scanf("%f", &peso[k]);
+            printf("\nInsira sua altura (em metros):\n");
+            scanf("%f", &altura[k]);
+            k++;
+        }
+        else{
+            printf("\nLimite de pessoas cadastradas excedidas.\n");
+        }
+        break;
+    case 2:
+        printf("\nA seguir, os dados de todos os atletas\n");
+            for(i=0; i<k; i++){
+                printf("O/A atleta %s possui %.2f metros de altura e %.2f kg\n", nome[i], altura[i], peso[i]);
+            }
+        break;
+    case 3:
+        printf("\nInsira o nome do atleta que você deseja consultar a altura:\n");
+        __fpurge(stdin);
+        gets(resp2);
+            for(i=0; i<k; i++){
+                if(strcmp(resp2, nome[i])==0){
+                        printf("\nO/A atleta possui %.2f metros de altura.\n", altura[i]);
+                }
+            }
+        break;
+    case 4:
+        printf("\nInsira o nome do atleta que você deseja alterar os dados:\n");
+        __fpurge(stdin);
+        gets(resp3);
+            for(i=0; i<k; i++){
+                if(strcmp(resp3, nome[i])==0){
+                        printf("*******************MENU**********************\n1. Altura;\n2. Peso.\n");
+                        scanf("%i", &resp4);
+                        switch(resp4){
+                        case 1:
+                        printf("\nInsira a nova altura (em metros):\n");
+                        scanf("%f", &altura[i]);
+                        break;
+                        case 2:
+                        printf("\nInsira o novo peso:\n");
+                        scanf("%f", &peso[i]);
+                        break;
+                }
+        }
+        }
+        break;
+    case 5:
+            for(i=0; i<k; i++){
+                soma+=peso[i];
+            }
+        media=soma/k;
+        printf("\nA média entre o peso dos atletas é de %.2f kg", media);
+        break;
+    }
+    }
+    return 0;
+}

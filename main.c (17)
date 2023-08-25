@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    srand(time(NULL));
+    int m[4][4], i, j, somal[4]={0}, somac[4]={0};
+    for(i=0; i<4; i++)
+    {
+        for(j=0; j<4; j++)
+        {
+        m[i][j]=rand()%2;
+        }
+    }
+        for(j=0; j<4; j++)
+        {
+            for(i=0;i<4;i++)
+            {
+            somal[i]=somal[i]+m[i][j];
+            }
+        }
+        for(i=0; i<4; i++)
+        {
+            for(j=0; j<4;j++)
+            {
+            somac[i]=somac[i]+m[i][j];
+            }
+        }
+        printf("\nO valor da soma das linhas:\n");
+        for(i=0; i<4; i++)
+        {
+            printf("\nNa linha %i a soma resulta em: %i.\n", i, somal[i]);
+        }
+        printf("\n\nO valor da soma das colunas:\n");
+        for(i=0; i<4; i++)
+        {
+            printf("\nNa coluna %i a soma resulta em: %i.\n", i, somac[i]);
+        }
+    return 0;
+}

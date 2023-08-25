@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    srand(time(NULL));
+    int m[4][4]={0}, c[4][4]={0}, i, j, resp, linha[4]={0}, coluna[4]={0};
+    printf("******************************************************************\n");
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            c[i][j]=rand()%50+1;
+            printf("%i  ", c[i][j]);
+        }
+        printf("\n");
+    }
+    printf("******************************************************************\n");
+    while(1){
+        resp=0;
+        printf("A seguir, insira o número sorteado:\n");
+        scanf("%i", &resp);
+        for(i=0; i<4; i++){
+            for(j=0; j<4; j++){
+                    if(c[i][j]==resp){
+                        m[i][j]=1;
+                    }
+            }
+        }
+        for(i=0; i<4; i++){
+            for(j=0; j<4; j++){
+            }
+            printf("\n");
+        }
+        for(i=0; i<4; i++){
+            linha[i]=0;
+            coluna[i]=0;
+            for(j=0; j<4; j++){
+                    linha[i]+=m[i][j];
+                    coluna[i]+=m[j][i];
+            }
+        }
+        if(linha[0]==4 || linha[1]==4 || linha[2]==4 || linha[3]==4 ||coluna[0]==4 || coluna[1]==4 || coluna[2]==4 || coluna[3]==4){
+        printf("\nParabéns, você ganhou!");
+        break;
+        }
+    }
+    return 0;
+}

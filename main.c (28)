@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+    srand(time(NULL));
+    int c[5][5]={0}, i=0, j=0, k, l, x, g;
+    printf("******************************************************************\n");
+    while(i<6 && j<6){
+            x=0;
+            g=0;
+            x=rand()%99+1;
+            for(k=0; k<i; k++){
+               for(l=0; l<j; l++){
+                if(x==c[k][l]){
+                    g++;
+                }
+            }
+            }
+            if(g==0){
+                c[i][j]=x;
+                j++;
+                if(j==5){
+                    j=0;
+                    i++;
+                 }
+            }
+    }
+     for(i=0; i<5; i++){
+               for(j=0; j<5; j++){
+                    printf("%i  ", c[i][j]);
+               }
+               printf("\n");
+     }
+    printf("******************************************************************\n");
+    return 0;
+}

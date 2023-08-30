@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int m[5][4], i, j, media[5]={0}, imaior, maior;
+    int m[5][4], i, media[5]={0}, imaior, maior;
     for(i=0; i<5; i++){
         printf("\nInsira o número de matrícula:\n");
         scanf("%i", &m[i][0]);

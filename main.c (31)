@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int m[3][3], somac[3]={0}, i, j;
+    for(i=0; i<3; i++){
+        for(j=0; j<3; j++){
+            scanf("%i", &m[i][j]);
+            somac[j]+=m[i][j];
+        }
+    }
+     for(i=0; i<3; i++){
+        for(j=0; j<3; j++){
+            printf("%i  ", m[i][j]);
+        }
+        printf("\n");
+     }
+    for(i=0; i<3; i++){
+        printf("\nA soma da coluna %i é igual a: %i\n", i, somac[i]);
+    }
+    return 0;
+}

@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, m[4][4], qtd=0;
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            scanf("%i", &m[i][j]);
+            if(m[i][j]>10){
+                qtd++;
+            }
+        }
+    }
+    printf("São %i valores maiores que 10", qtd);
+    return 0;
+}

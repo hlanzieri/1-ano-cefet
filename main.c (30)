@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int p[10][3]={0}, i, j, piorn[10]={0}, numpior[3]={0}, guardai=0;
+    for(i=0; i<10; i++){
+        guardai=0;
+        printf("\nInsira as notas do %i° aluno.\n", i+1);
+        for(j=0; j<3; j++){
+            printf("\nInsira a nota na prova %i:\n", j+1);
+            scanf("%i", &p[i][j]);
+            if(j==0){
+                piorn[i]=p[i][j];
+            }
+            else{
+                if(p[i][j]<piorn[i]){
+                    piorn[i]=p[i][j];
+                    guardai=i;
+                }
+            }
+            if(j==2){
+                numpior[guardai]++;
+            }
+        }
+    }
+    for(i=0; i<3; i++){
+                printf("\n\n\n%i alunos tiveram a pior nota na %i° prova", numpior[i], i+1);
+            }
+
+    return 0;
+}

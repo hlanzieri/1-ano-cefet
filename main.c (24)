@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, m[5][5]={0}, X, flag=0, k, l;
+    for(i=0; i<5; i++){
+        for(j=0; j<5; j++){
+            scanf("%i", &m[i][j]);
+            }
+            }
+            printf("\n\nInsira o valor que você procura:\n");
+            scanf("%i", &X);
+    for(i=0; i<5; i++){
+        for(j=0; j<5; j++){
+            if(X==m[i][j]){
+                flag++;
+                k=i;
+                l=j;
+            }
+        }
+    }
+    if(flag==1){
+        printf("\nNúmero encontrado, está localizado na linha %i e coluna %i", k, l);
+    }
+    else{
+        printf("\nNúmero não encontrado");
+    }
+    return 0;
+}

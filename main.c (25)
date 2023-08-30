@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, m[4][4]={0}, n[4][4]={0}, k[4][4]={0};
+    printf("primeira matriz:\n");
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            scanf("%i", &m[i][j]);
+            }
+            }
+            printf("segunda matriz:\n");
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            scanf("%i", &n[i][j]);
+            }
+            }
+            printf("\n\n");
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            if(m[i][j]>n[i][j]){
+                k[i][j]=m[i][j];
+            }
+            else{
+                k[i][j]=n[i][j];
+            }
+            printf("%i  ", k[i][j]);
+            }
+            printf("\n");
+            }
+    return 0;
+}

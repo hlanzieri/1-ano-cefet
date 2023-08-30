@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, m[4][4]={0}, imaior, jmaior, maior;
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            scanf("%i", &m[i][j]);
+            if(i==0 || j==0){
+                maior=m[i][j];
+                imaior=i;
+                jmaior=j;
+            }
+            else{
+                if(m[i][j]>maior){
+                    imaior=i;
+                    jmaior=j;
+                }
+            }
+            }
+        }
+    for(i=0; i<4; i++){
+        for(j=0; j<4; j++){
+            printf("%i  ", m[i][j]);
+        }
+        printf("\n");
+    }
+    printf("O maior número está na linha %i e coluna %i", imaior, jmaior);
+    
+}

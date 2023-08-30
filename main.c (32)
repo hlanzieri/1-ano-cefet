@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int m[5][4], i, media[5]={0}, imaior, maior;
+    for(i=0; i<5; i++){
+        printf("\nInsira o número de matrícula:\n");
+        scanf("%i", &m[i][0]);
+        printf("\nInsira sua média nas provas:\n");
+        scanf("%i", &m[i][1]);
+        printf("\nInsira sua média nos trabalhos:\n");
+        scanf("%i", &m[i][2]);
+    }
+    for(i=0; i<5; i++){
+        media[i]=(m[i][1]+m[i][2])/2;
+    }
+     for(i=0; i<5; i++){
+        if(i==0){
+            maior=media[0];
+            imaior=i;
+        }
+        else{
+        if(media[i]>maior){
+            maior=media[i];
+            imaior=i;
+        }
+        }
+     }
+     printf("\n\nO aluno que obteve a maior média foi o de matrícula correspondente a %i", m[imaior][0]);
+     printf("\nA seguir as médias finais de todos os alunos:");
+     for(i=0; i<5; i++){
+         printf("\nAluno %i° obteve como média final %i pontos", i+1, media[i]);
+     }
+    return 0;
+}

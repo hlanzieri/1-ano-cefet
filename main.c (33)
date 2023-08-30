@@ -1,34 +1,30 @@
 #include <stdio.h>
 
 int main() {
-    int m[5][4], i, media[5]={0}, imaior, maior;
-    for(i=0; i<5; i++){
-        printf("\nInsira o número de matrícula:\n");
-        scanf("%i", &m[i][0]);
-        printf("\nInsira sua média nas provas:\n");
-        scanf("%i", &m[i][1]);
-        printf("\nInsira sua média nos trabalhos:\n");
-        scanf("%i", &m[i][2]);
+    float m[3][6], somac=0, media=0;
+    int i, j;
+    for(i=0; i<3; i++){
+        for(j=0; j<6; j++){
+            scanf("%f", &m[i][j]);
+                if((j+1)%2==1){
+                somac+=m[i][j];
+            }
+        }
     }
-    for(i=0; i<5; i++){
-        media[i]=(m[i][1]+m[i][2])/2;
+    printf("\n\nSOMA DOS ELEMENTOS DAS COLUNAS ÍMPARES=> %.2f", somac);
+    for(i=0; i<3; i++){
+        media+=m[i][1]+m[i][3];
     }
-     for(i=0; i<5; i++){
-        if(i==0){
-            maior=media[0];
-            imaior=i;
+    media=media/6;
+    printf("\n\nMEDIA ARITMÉTICA ENTRE OS NÚMEROS DAS COLUNAS 2 E 4 => %.2f\n\n\n\n", media);
+    for(i=0; i<3; i++){
+        m[i][5]=m[i][0]+m[i][1];
+    }
+    for(i=0; i<3; i++){
+        for(j=0; j<6; j++){
+            printf("%.1f  ", m[i][j]);
+            }
+            printf("\n");
         }
-        else{
-        if(media[i]>maior){
-            maior=media[i];
-            imaior=i;
-        }
-        }
-     }
-     printf("\n\nO aluno que obteve a maior média foi o de matrícula correspondente a %i", m[imaior][0]);
-     printf("\nA seguir as médias finais de todos os alunos:");
-     for(i=0; i<5; i++){
-         printf("\nAluno %i° obteve como média final %i pontos", i+1, media[i]);
-     }
     return 0;
 }

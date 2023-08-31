@@ -4,20 +4,20 @@
 
 int main(){
     srand(time(NULL));
-    int c[5][5]={0}, i=0, j=0, k, l, x, g;
+    int c[5][5]={-1}, i=0, j=0, k, l, x, flag;
     printf("******************************************************************\n");
-    while(i<6 && j<6){
+    while(i<5 && j<5){
             x=0;
-            g=0;
+            flag=0;
             x=rand()%99+1;
-            for(k=0; k<i; k++){
-               for(l=0; l<j; l++){
+            for(k=0; k<5; k++){
+               for(l=0; l<5; l++){
                 if(x==c[k][l]){
-                    g++;
+                    flag++;
                 }
             }
             }
-            if(g==0){
+            if(flag==0){
                 c[i][j]=x;
                 j++;
                 if(j==5){

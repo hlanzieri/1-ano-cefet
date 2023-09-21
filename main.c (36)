@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct{
+    int numing, numingvend;
+    float preco, arrecadado;
+} vendas;
+
+int main()
+{
+    char resp[10];
+    float comprar, totalvendas=0;
+    vendas plateia = {0, 0, 0, 0};
+    vendas lateral = {0, 0, 0, 0};
+    vendas balcao = {0, 0, 0, 0};
+    printf("\nInsira o numero de ingressos disponível da categoria plateia:\n");
+    scanf("%i", &plateia.numing);
+    printf("\nInsira o valor dos ingressos da categoria plateia:\n");
+    scanf("%f", &plateia.preco);
+    printf("\nInsira o numero de ingressos disponível da categoria lateral:\n");
+    scanf("%i", &lateral.numing);
+    printf("\nInsira o valor dos ingressos da categoria lateral:\n");
+    scanf("%f", &lateral.preco);
+    printf("\nInsira o numero de ingressos disponível da categoria balcão:\n");
+    scanf("%i", &balcao.numing);
+    printf("\nInsira o valor dos ingressos da categoria balcão:\n");
+    scanf("%f", &balcao.preco);
+    while(1){
+        printf("\nInsira a categoria que você deseja adquirir o ingresso:\n");
+        __fpurge(stdin);
+        gets(resp);
+        if(strcmp(resp, "P")==0){
+            comprar=0;
+            printf("\nInsira a quantidade de ingressos que você deseja adquirir:\n");
+            scanf("%f", &comprar);
+            printf("\n\nPara adquirir os %.f ingressos, custará R$%.2f", comprar, comprar*plateia.preco);
+            plateia.numingvend+=comprar;
+            plateia.arrecadado+=plateia.preco*comprar;
+        }
+        else{
+        if(strcmp(resp, "L")==0){
+            comprar=0;
+            printf("\nInsira a quantidade de ingressos que você deseja adquirir:\n");
+            scanf("%f", &comprar);
+            printf("\n\nPara adquirir os %.f ingressos, custará R$%.2f", comprar, lateral.preco*comprar);
+            lateral.numingvend+=comprar;
+            lateral.arrecadado+=lateral.preco*comprar;
+        }
+        else{
+        if(strcmp(resp, "B")==0){
+            comprar=0;
+            printf("\nInsira a quantidade de ingressos que você deseja adquirir:\n");
+            scanf("%f", &comprar);
+            printf("\n\nPara adquirir os %.f ingressos, custará R$%.2f", comprar, balcao.preco*comprar);
+            balcao.numingvend+=comprar;
+            balcao.arrecadado+=balcao.preco*comprar;
+        }
+        else{
+            break;
+        }
+        }
+        }
+    }
+     printf("\n\nNa categoria Plateia ainda estão disponíveis %i ingressos e até agora foram arrecadados nessa categoria R$%.2f", plateia.numing-plateia.numingvend, plateia.arrecadado);
+     printf("\nNa categoria Lateral ainda estão disponíveis %i ingressos e até agora foram arrecadados nessa categoria R$%.2f", lateral.numing-lateral.numingvend, lateral.arrecadado);
+     printf("\nNa categoria Balcão ainda estão disponíveis %i ingressos e até agora foram arrecadados nessa categoria R$%.2f", balcao.numing-balcao.numingvend, balcao.arrecadado);
+     totalvendas = plateia.arrecadado+lateral.arrecadado+balcao.arrecadado;
+     printf("\n\n\nPara esse evento, no total, foram arrecadados R$%.2f", totalvendas);
+    return 0;
+}

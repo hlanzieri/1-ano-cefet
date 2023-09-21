@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define N 5
+typedef struct{
+    float preco[N];
+    char local[N][40], atracao[N][40];
+}dados;
+
+int main()
+{
+    int i, imaior=0, imenor=0;
+    float  maiorpreco=0, menorpreco=0;
+    
+    dados evento ={0, 0, 0};
+    
+    for(i=0; i<N; i++){
+    printf("\nInsira a atração do evento:\n");
+    __fpurge(stdin);
+    gets(evento.atracao[i]);
+    printf("\nInsira o local do evento:\n");
+    __fpurge(stdin);
+    gets(evento.local[i]);
+    printf("\nInsira o preço do ingresso do evento:\n");
+    scanf("%f", &evento.preco[i]);
+    }
+    for(i=0; i<N; i++){
+    if(i==0){
+        maiorpreco=evento.preco[i];
+        menorpreco=evento.preco[i];
+        imaior=i;
+        imenor=i;
+    }
+    else{
+    if(evento.preco[i]>maiorpreco){
+        imaior=i;
+        maiorpreco=evento.preco[i];
+    }
+    if(evento.preco[i]<menorpreco){
+        imenor=i;
+        menorpreco=evento.preco[i];
+    }
+    }
+    }
+        printf("\n\nO evento de ingresso mais barato pertence ao evento que ocorre no(a) %s e sua atração é o(a) %s", evento.local[imenor], evento.atracao[imenor]);
+        printf("\nO evento de ingresso mais caro pertence ao evento que ocorre no(a) %s e sua atração é o(a) %s", evento.local[imaior], evento.atracao[imaior]);
+    return 0;
+}

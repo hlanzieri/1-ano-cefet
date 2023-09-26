@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define tam 20
+
+typedef struct {
+    char nome[40], endereco[120];
+    int tel;
+    float preco;
+} dados;
+
+int main() {
+    int resp = 0, i = 0, j, jmenor;
+    char resp2[40];
+    float media = 0, menorpreco = 0;
+    dados lojas[tam];
+    while (resp != 6) {
+        printf("\n\n*****************************************\n               MENU\n*****************************************\nDigite o número da ação que você gostaria de realizar:\n\n1. Receber informações da loja;\n2. Ver todos os dados de uma loja;\n3. Mostrar a média entre os preços dos eletrodomésticos cadastrados;\n4. Mostrar telefone das empresas que estão com o preço abaixo da média;\n5. Mostrar as informações sobre a loja com menor preço;\n6. Sair.\n");
+        scanf("%i", &resp);
+        switch (resp) {
+            case 1:
+                printf("\nInsira o nome da loja:\n");
+                __fpurge(stdin);
+                gets(lojas[i].nome);
+                printf("\nInsira o endereço da loja:\n");
+                __fpurge(stdin);
+                gets(lojas[i].endereco);
+                printf("\nInsira o telefone da loja:\n");
+                scanf("%d", &lojas[i].tel);
+                printf("\nInsira o preço do produto:\n");
+                scanf("%f", &lojas[i].preco);
+                i++;
+                break;
+            case 2:
+                printf("\nInsira o nome da loja que você gostaria de consultar os dados:\n");
+                __fpurge(stdin);
+                gets(resp2);
+                for (j = 0; j < i; j++) {
+                    if (strcmp(resp2, lojas[j].nome) == 0) {
+                        printf("\nA loja %s localizada na/no %s de telefone %d possui o eletrodoméstico no valor de R$%.2f.", lojas[j].nome, lojas[j].endereco, lojas[j].tel, lojas[j].preco);
+                    }
+                }
+                break;
+
+            case 3:
+                for (j = 0; j < i; j++) {
+                    media += lojas[j].preco;
+                }
+                media = media / i;
+                printf("\nA média entre os preços dos eletrodomésticos cadastrados nas lojas é de R$%.2f.", media);
+                break;
+            case 4:
+                if (media == 0) {
+                    for (j = 0; j < i; j++) {
+                        media += lojas[j].preco;
+                    }
+                    media = media / i;
+                }
+                for (j = 0; j < i; j++) {
+                    if (media > lojas[j].preco) {
+                        printf("\nO produto da loja %s do telefone %d está abaixo do preço médio.", lojas[j].nome, lojas[j].tel);
+                    }
+                }
+                break;
+            case 5:
+                for (j = 0; j < i; j++) {
+                    if (j == 0) {
+                        menorpreco = lojas[j].preco;
+                        jmenor = j;
+                    }
+                    if (lojas[j].preco < menorpreco) {
+                        menorpreco = lojas[j].preco;
+                        jmenor = j;
+                    }
+                }
+                printf("\nA loja que apresenta o menor preço do eletrodoméstico é a/o %s, localizada na/no %s, cujo número de telefone é %d e o produto está custando R$%.2f.", lojas[jmenor].nome, lojas[jmenor].endereco, lojas[jmenor].tel, lojas[jmenor].preco);
+                break;
+        }
+    }
+    printf("\nVocê saiu!");
+    return 0;
+}

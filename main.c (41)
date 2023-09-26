@@ -1,0 +1,89 @@
+#include <stdio.h>
+#define tam 100
+
+typedef struct{
+    int codigo, mes, ano;
+    float leite, alimento;
+    char abate;
+}dados;
+
+int main(){
+    int resp, g=0, i, vaiproabate=0;
+    float leitesemana=0, posabate_l=0, alimentosemana=0, posabate_a=0;
+    
+    dados gado[tam];
+    
+    while(resp!=8){
+        printf("**********************************************************************************************\n");
+        printf("De acordo com as opções a seguir, informe a ação que o usuário gostaria de realizar:\n\n1. Informar dados sobre um animal;\n2. Informar cabeças que irão pro abate;\n3. Mostrar quantidade de leite produzida por semana;\n4. Mostrar a quantidade total de alimento consumido por semana;\n5. Mostrar a quantidade total de leite que vai ser produzido por semana na fazenda, após o abate;\n6. Mostrar a quantidade total de alimento que vai ser consumido por semana na fazenda, após o abate;\n7. Mostrar número de cabeças de gado que irão para o abate.\n8. Sair.");
+        printf("\n**********************************************************************************************\n");
+        scanf("%i", &resp);
+        switch(resp){
+            case 1:
+            printf("\nInsira o código do animal:\n");
+            scanf("%i", &gado[g].codigo);
+            printf("\nInsira a quantidade de leite produzida em uma semana pelo animal(em litros):\n");
+            scanf("%f", &gado[g].leite);
+                leitesemana+=gado[i].leite;
+            printf("\nInsira a quantidade de alimento consumida em uma semana pelo animal(em kg):\n");
+            scanf("%f", &gado[g].alimento);
+            alimentosemana+=gado[g].alimento;
+            printf("\nInsira o mẽs de nascimento do animal:\n");
+            scanf("%i", &gado[g].mes);
+            printf("\nInsira o ano de nascimento do animal:\n");
+            scanf("%i", &gado[g].ano);
+            g++;
+            break;
+            case 2:
+            for(i=0; i<g; i++){
+            if(2023-gado[i].ano>5 && gado[i].leite<40){
+                gado[i].abate="S";
+                printf("\n\nAnimal de código %i será abatido!", gado[i].codigo);
+            }
+            else{
+                if(gado[i].leite>50 || gado[i].leite<70 && gado[i].alimento){
+                    gado[i].abate="S";
+                    printf("\n\nAnimal de código %i será abatido!", gado[i].codigo);
+                }
+                else{
+                    gado[i].abate="N";
+                    printf("\n\nAnimal de código %i não será abatido!", gado[i].codigo);
+                }
+            }
+            }
+            break;
+            case 3:
+            printf("\nA quantidade de leite produzida por semana é de %.2f litros", leitesemana);
+            break;
+            case 4:
+            printf("\nA quantidade de alimento consumido por semana é de %.2f kg", alimentosemana);
+            break;
+            case 5:
+            for(i=0; i<g; i++){
+                if(strcmp(gado[i].abate, "N")==0){
+                    posabate_l+=gado[i].leite;
+                }
+            }
+            printf("\nApós o abate, serão produzidos %.2f litros de leite por semana", posabate_l);
+            break;
+            case 6:
+            for(i=0; i<g; i++){
+                if(strcmp(gado[i].abate, "N")==0){
+                    posabate_a+=gado[i].alimento;
+                }
+            }
+            printf("\nApós o abate, serão consumidos %.2f kg de alimento por semana", posabate_a);
+            break;
+            case 7:
+            for(i=0; i<g; i++){
+                if(strcmp(gado[i].abate, "S")==0){
+                    vaiproabate++;
+                }
+            }
+            printf("\nIrão pro abate %i cabeças de gado.", vaiproabate);
+            break;
+        }
+    }
+    printf("\n\n\nVocê saiu!");
+    return 0;
+}

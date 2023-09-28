@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float soma(float a, float b){
+    float soma=0;
+    soma=a+b;
+    return soma;
+}
+float sub(float a, float b){
+    float sub=0;
+    sub=a-b;
+    return sub;
+}
+float mult(float a, float b){
+    float mult=0;
+    mult=a*b;
+    return mult;
+}
+float divisor(float a, float b){
+    float div=0;
+    divisor=a/b;
+    return divisor;
+}
+    int mensagem(){
+    printf("\nInsira qual operação você gostaria de realizar:\n1. Adição;\n2. Subtração;\n3. Multiplicação;\n4. Divisão.\n5. Sair.\n");
+    return 0;
+}
+
+int main(){
+    float a=0, b=0;
+    int resp=0;
+
+    printf("\nInsira o primeiro valor:\n");
+    scanf("%f", &a);
+    printf("\nInsira o segundo valor:\n");
+    scanf("%f", &b);
+
+    while(resp!=5){
+    mensagem();
+    scanf("%i", &resp);
+    switch(resp){
+case 1:
+        printf("\nA soma dos números é %f.", soma(a, b));
+        break;
+case 2:
+        printf("\nA subtração dos números é %f.", sub(a, b));
+        break;
+case 3:
+        printf("\nO produto dos números é %f.", mult(a, b));
+        break;
+case 4:
+        printf("\nA divisão dos números é %f.", divisor(a, b));
+        break;
+    }
+    }
+    printf("\nVocê saiu!");
+    return 0;
+}

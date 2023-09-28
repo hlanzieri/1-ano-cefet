@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float media(float a, float b, float c){
+    float media=0;
+    media=(a+b+c)/3;
+    return media;
+
+}
+
+int main(){
+    float a=0, b=0, c=0;
+
+    printf("\nInsira o primeiro valor:\n");
+    scanf("%f", &a);
+    printf("\nInsira o segundo valor:\n");
+    scanf("%f", &b);
+    printf("\nInsira o terceiro valor:\n");
+    scanf("%f", &c);
+    printf("A média entre os três valores é %.2f", media(a, b, c));
+    return 0;
+}

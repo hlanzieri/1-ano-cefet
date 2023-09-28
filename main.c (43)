@@ -18,11 +18,11 @@ float mult(float a, float b){
 }
 float divisor(float a, float b){
     float div=0;
-    divisor=a/b;
-    return divisor;
+    div=a/b;
+    return div;
 }
     int mensagem(){
-    printf("\nInsira qual operação você gostaria de realizar:\n1. Adição;\n2. Subtração;\n3. Multiplicação;\n4. Divisão.\n5. Sair.\n");
+    printf("\n\n\nInsira qual operação você gostaria de realizar:\n1. Adição;\n2. Subtração;\n3. Multiplicação;\n4. Divisão.\n5. Sair.\n");
     return 0;
 }
 
@@ -40,16 +40,16 @@ int main(){
     scanf("%i", &resp);
     switch(resp){
 case 1:
-        printf("\nA soma dos números é %f.", soma(a, b));
+        printf("\nA soma dos números é %.2f.", soma(a, b));
         break;
 case 2:
-        printf("\nA subtração dos números é %f.", sub(a, b));
+        printf("\nA subtração dos números é %.2f.", sub(a, b));
         break;
 case 3:
-        printf("\nO produto dos números é %f.", mult(a, b));
+        printf("\nO produto dos números é %.2f.", mult(a, b));
         break;
 case 4:
-        printf("\nA divisão dos números é %f.", divisor(a, b));
+        printf("\nA divisão dos números é %.2f.", divisor(a, b));
         break;
     }
     }

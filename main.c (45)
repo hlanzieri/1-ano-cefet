@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int menu(){
+    int resp=0;
+    printf("\n\n======================================================\n                  MENU\n======================================================\n");
+    printf("1. Soma entre intervalos dos número que não são divisiveis por 13;\n2. Soma de frações;\n3. Jogo de tabuleiro campo minado;\n4. Sair.\n");
+    scanf("%i", &resp);
+    return resp;
+}
+void soma(){
+    int num[2], i, soma=0;
+    printf("\nInsira um número:\n");
+    scanf("%i", &num[0]);
+    printf("\nInsira um número, maior que o informado anteriormente:\n");
+    scanf("%i", &num[1]);
+    for(i=num[0]; i<=num[1]; i++){
+        if(i%13==0){
+        }
+        else{
+            soma+=i;
+        }
+    }
+    printf("\nA soma dos números no intervalo é %i.", soma);
+}
+
+void fracao(){
+    int N=0, i;
+    float S=0, j=0 ;
+    printf("\nInsira um número:\n");
+    scanf("%i", &N);
+    for(i=1; i<=N; i++){
+        j=i;
+        S+= 1/j;
+    }
+    printf("\nA soma das frações é %.3f.", S);
+}
+
+void bomba(){
+    srand(time(NULL));
+    int N=0, i, j;
+    printf("\nInsira o número de células presentes na tabela:\n");
+    scanf("%i", &N);
+    int m[5][5]={0}, bombavizinha[5][5]={0};
+    printf("\nPosições das bombas:\n");
+    for(i=0; i<N; i++){
+        for(j=0; j<N; j++){
+            m[i][j]=rand()%2;
+            printf("%i  ", m[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\nDe acordo com o número de bombas vizinhas temos uma matriz com o número das mesmas por cada posição:\n");
+    for(i=0; i<N; i++){
+        for(j=0; j<N; j++){
+          \\arrumar
+            if(m[i-1][j-1]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i][j-1]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i+1][j-1]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i-1][j]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i+1][j]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i-1][j+1]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i][j+1]=1){
+                bombavizinha[i][j]++;
+            }
+            if(m[i+1][j+1]=1){
+                bombavizinha[i][j]++;
+            }
+          //arrumar até aqui
+            printf("%i  ", bombavizinha[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int resp=0;
+    while(resp!=4){
+        resp=menu();
+        switch(resp){
+    case 1:
+        soma();
+        break;
+    case 2:
+        fracao();
+        break;
+    case 3:
+        bomba();
+        break;
+        }
+    }
+    return 0;
+}

@@ -54,32 +54,46 @@ void bomba(){
     printf("\nDe acordo com o número de bombas vizinhas temos uma matriz com o número das mesmas por cada posição:\n");
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){
-          \\arrumar
-            if(m[i-1][j-1]=1){
+            if(i>0 && j>0){
+            if(m[i-1][j-1]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i][j-1]=1){
+            }
+            if(i>0){
+            if(m[i-1][j]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i+1][j-1]=1){
+            }
+            if(i>0 && j<N-1){
+            if(m[i-1][j+1]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i-1][j]=1){
+            }
+            if(j>0){
+            if(m[i][j-1]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i+1][j]=1){
+            }
+            if(i<N-1 && j>0){
+            if(m[i+1][j-1]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i-1][j+1]=1){
+            }
+            if(i<N-1){
+            if(m[i+1][j]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i][j+1]=1){
+            }
+            if(j<N-1){
+            if(m[i][j+1]==1){
                 bombavizinha[i][j]++;
             }
-            if(m[i+1][j+1]=1){
+            }
+            if(i<N-1 && j<N-1){
+            if(m[i+1][j+1]==1){
                 bombavizinha[i][j]++;
             }
-          //arrumar até aqui
+            }
             printf("%i  ", bombavizinha[i][j]);
         }
         printf("\n");

@@ -102,79 +102,98 @@ void bomba(){
         printf("\n");
     }
 }
-    
-void discos(){
-    typedef struct{
+
+typedef struct{
         char tipo[10], nome_banda[50], nome_disco[50];
         float preco;
         int ano, qtd_cancoes, nota;
     }dados;
-    dados disco[n];
-    int resp=0, i=0, flag=0;
-    float gastos[3]={0};
-    char procura[50];
-    while(resp!=5){
-        printf("\n\n\nInsira qual ação você gostaria de realizar de acordo com a tabela a seguir:\n1. Cadastrar um novo disco;\n2. Mostrar todos os dados de um determinado artista ou banda;\n3. Mostrar quanto foi gasto em cada tipo de disco;\n4. Mostrar discos lançados antes de 2006;\n5. Sair.\n");
-        scanf("%i", &resp);
-        switch(resp){
-    case 1:
+
+dados cadastro(){
+        dados D;
         printf("\nInsira o tipo do disco: (CD, DVD, VINIL)\n");
         __fpurge(stdin);
-        gets(disco[i].tipo);
+        gets(D.tipo);
         printf("\nInsira o nome da banda ou artista:\n");
         __fpurge(stdin);
-        gets(disco[i].nome_banda);
-        printf("\nInsira o preço de compra do disco:\n");   
-        scanf("%f", &disco[i].preco);
+        gets(D.nome_banda);
+        printf("\nInsira o preço de compra do disco:\n");
+        scanf("%f", &D.preco);
         printf("\nInsira o ano em que o disco foi lançado:\n");
-        scanf("%i", &disco[i].ano);
+        scanf("%i", &D.ano);
         printf("\nInsira o nome do disco:\n");
         __fpurge(stdin);
-        gets(disco[i].nome_disco);
+        gets(D.nome_disco);
         printf("\nInsira a quantidade de canções no disco:\n");
-        scanf("%i", &disco[i].qtd_cancoes);
+        scanf("%i", &D.qtd_cancoes);
         printf("\nEscolha uma nota de 0 a 10 pro disco:\n");
-        scanf("%i", &disco[i].nota);
-        i++;
-        break;
-    case 2:
-        printf("\nInsira o nome do artista ou banda que você procura:\n");
+        scanf("%i", &D.nota);
+    return D;
+}
+
+dados pesquisa (dados import[], int i){
+    char procura[50];
+    int flag=0;
+    printf("\nInsira o nome do artista ou banda que você procura:\n");
         __fpurge(stdin);
         gets(procura);
         flag=0;
         for(int j=0; j<i; j++){
-            if(strcmp(procura, disco[j].nome_banda)==0){
-                  flag++; 
-                  printf("\nO disco %s %s da banda %s, com preço de R$%.2f , lançado em %i, contém %i canções e está avaliado em %i pontos.\n", disco[j].tipo, disco[j].nome_disco, disco[j].nome_banda, disco[j].preco, disco[j].ano, disco[j].qtd_cancoes, disco[j].nota);
+            if(strcmp(procura, import[j].nome_banda)==0){
+                  flag++;
+                  printf("\nO disco %s %s da banda %s, com preço de R$%.2f , lançado em %i, contém %i canções e está avaliado em %i pontos.\n", import[j].tipo, import[j].nome_disco, import[j].nome_banda, import[j].preco, import[j].ano, import[j].qtd_cancoes, import[j].nota);
+                  break;
             }
         }
         if(flag==0){
             printf("\nNão há discos desse artista ou banda.\n");
         }
-        break;
-    case 3:
-        for(int j=0; j<i; j++){
-            if(strcmp(disco[j].tipo, "CD")==0){
-                gastos[0]+=disco[j].preco;
+}
+dados gasto(dados import[], int i){
+    float gastos[3]={0};
+    for(int j=0; j<i; j++){
+            if(strcmp(import[j].tipo, "CD")==0){
+                gastos[0]+=import[j].preco;
             }
-            if(strcmp(disco[j].tipo, "DVD")==0){
-                gastos[1]+=disco[j].preco;
+            if(strcmp(import[j].tipo, "DVD")==0){
+                gastos[1]+=import[j].preco;
             }
-            if(strcmp(disco[j].tipo, "Vinil")==0){
-                gastos[2]+=disco[j].preco;
+            if(strcmp(import[j].tipo, "Vinil")==0){
+                gastos[2]+=import[j].preco;
             }
         }
         printf("\nForam gastos em discos do tipo CD R$%.2f.\n", gastos[0]);
         printf("\nForam gastos em discos do tipo DVD R$%.2f.\n", gastos[1]);
         printf("\nForam gastos em discos do tipo Vinil R$%.2f.\n", gastos[2]);
-        break;
-    case 4:
-    printf("\nA seguir temos uma lista dos discos lançados antes de 2006:\n");
+}
+dados antes(dados import[], int i){
+        printf("\nA seguir temos uma lista dos discos lançados antes de 2006:\n");
         for(int j=0; j<i; j++){
-            if(disco[j].ano<2006){
-                printf("\nO disco %s do artista/banda %s.\n", disco[j].nome_disco, disco[j].nome_banda);
+            if(import[j].ano<2006){
+                printf("\nO disco %s do artista/banda %s.\n", import[j].nome_disco, import[j].nome_banda);
             }
         }
+}
+
+void discos(){
+    dados disco[n];
+    int resp=0, i=0, k=0;
+    while(resp!=5){
+        printf("\n\n\nInsira qual ação você gostaria de realizar de acordo com a tabela a seguir:\n1. Cadastrar um novo disco;\n2. Mostrar todos os dados de um determinado artista ou banda;\n3. Mostrar quanto foi gasto em cada tipo de disco;\n4. Mostrar discos lançados antes de 2006;\n5. Sair.\n");
+        scanf("%i", &resp);
+        switch(resp){
+    case 1:
+        disco[i]=cadastro();
+        i++;
+        break;
+    case 2:
+        pesquisa(disco, i);
+        break;
+    case 3:
+        gasto(disco, i);
+        break;
+    case 4:
+        antes(disco, i);
         break;
         }
     }
@@ -202,3 +221,4 @@ int main()
     printf("\nVocê saiu!");
     return 0;
 }
+

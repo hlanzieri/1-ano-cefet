@@ -181,16 +181,20 @@ void antes(dados import[], int i){
         }
 }
 void recomenda(dados import[], int i){
-    int n_cancoes=0, nota_cancoes=0, flag=0;
+    int n_cancoes=0, nota_cancoes=0, flag=0, flag2=0;
         printf("\nInsira o número de canções que você gostaria que o disco tivesse:\n");
         scanf("%i", &n_cancoes);
         printf("\nInsira a nota mínima a qual você gostaria que o disco tivesse:\n");
         scanf("%i", &nota_cancoes);
-        printf("\n\nAs opções de discos recomedadas são:\n");
+        flag2=0;
         for(int j=0; j<i; j++){
             if(n_cancoes==import[j].qtd_cancoes && nota_cancoes<=import[j].nota){
+                if(flag2==0){
+                printf("\n\nAs opções de discos recomedadas são:\n");
+                }
                 printf("\nO disco %s %s da banda %s, com preço de R$%.2f , lançado em %i, contém %i canções e está avaliado em %i pontos.\n", import[j].tipo, import[j].nome_disco, import[j].nome_banda, import[j].preco, import[j].ano, import[j].qtd_cancoes, import[j].nota);
                 flag++;
+                flag2++;
             }
         }
         if(flag==0){

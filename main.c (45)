@@ -131,7 +131,7 @@ dados cadastro(){
     return D;
 }
 
-dados pesquisa (dados import[], int i){
+void pesquisa (dados import[], int i){
     char procura[50];
     int flag=0;
     printf("\nInsira o nome do artista ou banda que você procura:\n");
@@ -149,7 +149,7 @@ dados pesquisa (dados import[], int i){
             printf("\nNão há discos desse artista ou banda.\n");
         }
 }
-dados gasto(dados import[], int i){
+void gasto(dados import[], int i){
     float gastos[3]={0};
     for(int j=0; j<i; j++){
             if(strcmp(import[j].tipo, "CD")==0){
@@ -166,7 +166,7 @@ dados gasto(dados import[], int i){
         printf("\nForam gastos em discos do tipo DVD R$%.2f.\n", gastos[1]);
         printf("\nForam gastos em discos do tipo Vinil R$%.2f.\n", gastos[2]);
 }
-dados antes(dados import[], int i){
+void antes(dados import[], int i){
         printf("\nA seguir temos uma lista dos discos lançados antes de 2006:\n");
         for(int j=0; j<i; j++){
             if(import[j].ano<2006){
@@ -174,12 +174,32 @@ dados antes(dados import[], int i){
             }
         }
 }
+void recomenda(dados import[], int i){
+    int n_cancoes=0, nota_cancoes=0, flag=0;
+        printf("\nInsira o número de canções que você gostaria que o disco tivesse:\n");
+        scanf("%i", &n_cancoes);
+        printf("\nInsira a nota mínima a qual você gostaria que o disco tivesse:\n");
+        scanf("%i", &nota_cancoes);
+        printf("\n\nAs opções de discos recomedadas são:\n");
+        for(int j=0; j<i; j++){
+            if(n_cancoes==import[j].qtd_cancoes && nota_cancoes<=import[j].nota){
+                printf("\nO disco %s %s da banda %s, com preço de R$%.2f , lançado em %i, contém %i canções e está avaliado em %i pontos.\n", import[j].tipo, import[j].nome_disco, import[j].nome_banda, import[j].preco, import[j].ano, import[j].qtd_cancoes, import[j].nota);
+                flag++;
+            }
+        }
+        if(flag==0){
+            printf("\nExigência muito alta, mude os parâmetros para encontrar um disco.\n");
+        }
+}
+void despedida(){
+    printf("\nObrigado por ter usado nosso programa de registro de discos!\n");
+}
 
 void discos(){
     dados disco[n];
     int resp=0, i=0, k=0;
-    while(resp!=5){
-        printf("\n\n\nInsira qual ação você gostaria de realizar de acordo com a tabela a seguir:\n1. Cadastrar um novo disco;\n2. Mostrar todos os dados de um determinado artista ou banda;\n3. Mostrar quanto foi gasto em cada tipo de disco;\n4. Mostrar discos lançados antes de 2006;\n5. Sair.\n");
+    while(resp!=6){
+        printf("\n\n\nInsira qual ação você gostaria de realizar de acordo com a tabela a seguir:\n1. Cadastrar um novo disco;\n2. Mostrar todos os dados de um determinado artista ou banda;\n3. Mostrar quanto foi gasto em cada tipo de disco;\n4. Mostrar discos lançados antes de 2006;\n5. Recomendar disco;\n6. Sair.\n");
         scanf("%i", &resp);
         switch(resp){
     case 1:
@@ -195,8 +215,16 @@ void discos(){
     case 4:
         antes(disco, i);
         break;
+    case 5:
+        recomenda(disco, i);
+        break;
         }
     }
+        despedida();
+}
+
+void despedida_final(){
+    printf("\nObrigado por usar meu programa, HL's agradece a vc!\n\n");
 }
 int main()
 {
@@ -218,7 +246,6 @@ int main()
         break;
     }
     }
-    printf("\nVocê saiu!");
+    despedida_final();
     return 0;
 }
-

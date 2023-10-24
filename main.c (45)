@@ -13,7 +13,7 @@ int menu_inicial(){
 int menu(){
     int resp=0;
     printf("\n\n======================================================\n                  MENU\n======================================================\n");
-    printf("1. Soma entre intervalos dos número que não são divisiveis por 13;\n2. Soma de frações;\n3. Jogo de tabuleiro campo minado;\n4. Controle de discos;\n5. Sair.\n");
+    printf("1. Soma entre intervalos dos número que não são divisiveis por 13;\n2. Soma de frações;\n3. Jogo de tabuleiro campo minado;\n4. Controle de discos;\n5. Controle na lanchonete;\n6. Sair.\n");
     scanf("%i", &resp);
     return resp;
 }
@@ -129,7 +129,7 @@ dados cadastro(){
         scanf("%i", &D.ano);
         printf("\nInsira o nome do disco:\n");
         __fpurge(stdin);
-        gets(D.nome_disco);
+        gets(D[i].nome_disco);
         printf("\nInsira a quantidade de canções no disco:\n");
         scanf("%i", &D.qtd_cancoes);
         printf("\nEscolha uma nota de 0 a 10 pro disco:\n");
@@ -201,6 +201,7 @@ void recomenda(dados import[], int i){
             printf("\nExigência muito alta, mude os parâmetros para encontrar um disco.\n");
         }
 }
+
 void despedida(){
     printf("\nObrigado por ter usado nosso programa de registro de discos!\n");
 }
@@ -235,10 +236,109 @@ void discos(){
 void despedida_final(){
     printf("\nObrigado por usar meu programa, HL's agradece a vc!\n\n");
 }
+
+typedef struct{
+    char formula[50], ingrediente[50];
+    int  num_vendas=0;
+    float preco=0;
+}receita;
+
+int mensagem(){
+    int resp=0;
+    printf("\n\nInsira a ação que você gostaria de realizar de acordo com as opções a seguir:\n1. Cadastrar nova receita;\n2. Acrescentar ovos no estoque;\n3. Acrescentar leite no estoque;\n4. Realizar venda;\n5. Mostrar total de vendas;\n6. Sair.\n");
+    scanf("%i", &resp);
+    return resp;
+}
+
+void cadastrolanch(int g){
+        dados D;
+        printf("\nInsira o nome da receita:\n");
+        __fpurge(stdin);
+        gets(D.formula);
+        printf("\nA receita precisa de 'Ovos' ou 'Leite'?\n");
+        __fpurge(stdin);
+        gets(D.ingrediente);
+        printf("\nInsira o preço:\n");
+        scanf("%f", &D.preco);
+}
+
+int ovos(int qtd_ovos){
+    int adc=0;
+    printf("\nInsira a quantidade de ovos que será adicionada ao estoque:\n");
+    scanf("%i", &adc);
+    qtd_ovos+=adc;
+    printf("\nO número de ovos no estoque agora é de %i unidades\n", qtd_ovos);
+    return qtd_ovos;
+}
+
+int leite(int qtd_leite){
+    float adc=0;
+    printf("\nInsira a litragem de leite que será adicionada ao estoque:\n");
+    scanf("%i", &adc);
+    qtd_leite+=adc;
+    printf("\nA quantidade de leite no estoque agora é de %i litros\n", qtd_ovos);
+    return qtd_leite;
+}
+
+void venda(receita import[], int qtd_ovos, float qtd_leite, int pergunta){
+    int reducao=0;
+    import[pergunta].num_vendas++;
+    if(strcmp(import[pergunta].ingrediente,"Ovos")==0){
+        printf("\nInsira a quantidade de ovos que serão utilizados na receita:\n");
+        scanf("%i", &reducao);
+        qtd_ovos-=reducao;
+        printf("\nApós alteração, temos no estoque %i ovos.", qtd_ovos);
+    }
+    if(strcmp(import[pergunta].ingrediente,"Leite")==0){
+        printf("\nInsira a quantidade de leite que será utilizado na receita:\n");
+        scanf("%i", &reducao);
+        qtd_ovos-=reducao;
+        printf("\nApós alteração, temos no estoque %i ml de leite.", qtd_leite);
+    }
+    }
+void totalvendas(receita import[], int g){
+        printf("\nA seguir temos uma relação entre as receitas e suas respectivas vendas:\n");
+        for(int i=0; i<g;i++){
+            printf("\nA receita de %s vendeu R$%.2f.\n" import[i].formula, import[i].preco*num_vendas);
+        }
+    }
+
+void despedidalanch(){
+    printf("\nFoi um prazer receber você(ês) em nossa lanchonete! Volte sempre!\n\n");
+}
+
+int lanchonete(){
+    controle receitas[20];
+    int resp=0, qtd_ovos=24, g=0, pergunta=0, qtd_leite=10000;
+    while(resp!=5){
+        resp=mensagem();
+        switch(resp){
+        case 1:
+            cadastrolanch(g, receitas);
+            g++;
+            break;
+        case 2:
+            qtd_ovos=ovos(qtd_ovos);
+            break;
+        case 3:
+            qtd_leite=leite(qtd_leite);
+        case 4:
+            printf("\nInsira qual o código da receita que você gostaria que fosse preparada:\n");
+            scanf("%i", &pergunta);
+            venda(pergunta, qtd_ovos, qtd_leite);
+            break;
+        case 5:
+            totalvendas(g);
+            break;
+        }
+    }
+    despedidalanch();
+}
+
 int main()
 {
     int resp=0;
-    while(resp!=5){
+    while(resp!=6){
         resp=menu();
         switch(resp){
     case 1:
@@ -253,6 +353,9 @@ int main()
     case 4:
         discos();
         break;
+    case 5:
+        lanchonete();
+        break
     }
     }
     despedida_final();

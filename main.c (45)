@@ -129,7 +129,7 @@ dados cadastro(){
         scanf("%i", &D.ano);
         printf("\nInsira o nome do disco:\n");
         __fpurge(stdin);
-        gets(D[i].nome_disco);
+        gets(D.nome_disco);
         printf("\nInsira a quantidade de canções no disco:\n");
         scanf("%i", &D.qtd_cancoes);
         printf("\nEscolha uma nota de 0 a 10 pro disco:\n");
@@ -239,8 +239,8 @@ void despedida_final(){
 
 typedef struct{
     char formula[50], ingrediente[50];
-    int  num_vendas=0;
-    float preco=0;
+    int  num_vendas, qtd_necessaria;
+    float preco;
 }receita;
 
 int mensagem(){
@@ -250,16 +250,17 @@ int mensagem(){
     return resp;
 }
 
-void cadastrolanch(int g){
-        dados D;
+void cadastrolanch(int g, receita import[]){
         printf("\nInsira o nome da receita:\n");
         __fpurge(stdin);
-        gets(D.formula);
+        gets(import[g].formula);
         printf("\nA receita precisa de 'Ovos' ou 'Leite'?\n");
         __fpurge(stdin);
-        gets(D.ingrediente);
+        gets(import[g].ingrediente);
+        printf("\nInsira a quantidade de unidades de ovo ou a mililitragem de leite:\n");
+        scanf("%i", &import[g].qtd_necessaria);
         printf("\nInsira o preço:\n");
-        scanf("%f", &D.preco);
+        scanf("%f", &import[g].preco);
 }
 
 int ovos(int qtd_ovos){
@@ -273,33 +274,28 @@ int ovos(int qtd_ovos){
 
 int leite(int qtd_leite){
     float adc=0;
-    printf("\nInsira a litragem de leite que será adicionada ao estoque:\n");
-    scanf("%i", &adc);
+    printf("\nInsira a mililitragem de leite que será adicionada ao estoque:\n");
+    scanf("%f", &adc);
     qtd_leite+=adc;
-    printf("\nA quantidade de leite no estoque agora é de %i litros\n", qtd_ovos);
+    printf("\nA quantidade de leite no estoque agora é de %i mililitros\n", qtd_leite);
     return qtd_leite;
 }
 
-void venda(receita import[], int qtd_ovos, float qtd_leite, int pergunta){
-    int reducao=0;
+void venda(receita import[], int qtd_ovos, int qtd_leite, int pergunta){
     import[pergunta].num_vendas++;
-    if(strcmp(import[pergunta].ingrediente,"Ovos")==0){
-        printf("\nInsira a quantidade de ovos que serão utilizados na receita:\n");
-        scanf("%i", &reducao);
-        qtd_ovos-=reducao;
-        printf("\nApós alteração, temos no estoque %i ovos.", qtd_ovos);
+    if(strcmp(import[pergunta].ingrediente, "Ovos")==0){
+        qtd_ovos-=import[pergunta].qtd_necessaria;
     }
-    if(strcmp(import[pergunta].ingrediente,"Leite")==0){
-        printf("\nInsira a quantidade de leite que será utilizado na receita:\n");
-        scanf("%i", &reducao);
-        qtd_ovos-=reducao;
-        printf("\nApós alteração, temos no estoque %i ml de leite.", qtd_leite);
+    if(strcmp(import[pergunta].ingrediente, "Leite")==0){
+        qtd_leite-=import[pergunta].qtd_necessaria;
     }
+        printf("\nOperação realizada com sucesso!\n");
+        printf("\nApós a venda, temos no estoque %i ovos e %i ml de leite.\n", qtd_ovos, qtd_leite);
     }
 void totalvendas(receita import[], int g){
         printf("\nA seguir temos uma relação entre as receitas e suas respectivas vendas:\n");
         for(int i=0; i<g;i++){
-            printf("\nA receita de %s vendeu R$%.2f.\n" import[i].formula, import[i].preco*num_vendas);
+            printf("\nA receita de %s vendeu R$%.2f.\n", import[i].formula, import[i].preco*import[i].num_vendas);
         }
     }
 
@@ -308,7 +304,8 @@ void despedidalanch(){
 }
 
 int lanchonete(){
-    controle receitas[20];
+    receita receitas[20]={0};
+
     int resp=0, qtd_ovos=24, g=0, pergunta=0, qtd_leite=10000;
     while(resp!=5){
         resp=mensagem();
@@ -322,13 +319,14 @@ int lanchonete(){
             break;
         case 3:
             qtd_leite=leite(qtd_leite);
+            break;
         case 4:
-            printf("\nInsira qual o código da receita que você gostaria que fosse preparada:\n");
+            printf("\nInsira qual o código (vetor) da receita que você gostaria que fosse preparada:\n");
             scanf("%i", &pergunta);
-            venda(pergunta, qtd_ovos, qtd_leite);
+            venda(receitas, qtd_ovos, qtd_leite, pergunta);
             break;
         case 5:
-            totalvendas(g);
+            totalvendas(receitas, g);
             break;
         }
     }
@@ -355,7 +353,7 @@ int main()
         break;
     case 5:
         lanchonete();
-        break
+        break;
     }
     }
     despedida_final();
